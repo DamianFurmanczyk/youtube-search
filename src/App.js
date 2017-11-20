@@ -1,5 +1,4 @@
 import "./App.css";
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchMovie } from "./actions/videos";
@@ -41,13 +40,3 @@ class App extends Component {
     );
   }
 }
-
-// {vids !== {} &&
-// _.mapKeys(this.props.videos, (vid, key) => console.log(vid))}
-
-export default connect(
-  videos => {
-    return { videos };
-  },
-  { fetchMovie }
-)(App);
