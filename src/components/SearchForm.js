@@ -19,8 +19,6 @@ class SearchForm extends Component {
   }
 
   onSearch(e) {
-    console.log(this.props);
-    console.log(this.state.query);
     e.preventDefault();
     this.props.fetchMovies(this.state.query);
     this.props.setQuery(this.state.query);

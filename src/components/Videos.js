@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Input, Form, Button, Segment, Item } from "semantic-ui-react";
+import {
+  Input,
+  Form,
+  Button,
+  Segment,
+  Item,
+  Dimmer,
+  Loader
+} from "semantic-ui-react";
 import _ from "lodash";
 
 import { connect } from "react-redux";
@@ -21,19 +29,29 @@ class VideosView extends Component {
   }
 
   render() {
-    console.log(this.props.videos);
+    const { history, videos } = this.props;
+    const length = Object.keys(videos).length;
+
     return (
       <div>
         <Segment attached>
           <Item.Group divided>
-            {_.map(this.props.videos, (vid, key) => (
-              <VideoItem key={key} history={this.props.history} vid={vid} />
-            ))}
+            {length !== 0 ? (
+              _.map(videos, (vid, key) => (
+                <VideoItem key={key} history={history} vid={vid} />
+              ))
+            ) : (
+              <Loader active inline="centered">
+                Waiting for input
+              </Loader>
+            )}
           </Item.Group>
         </Segment>
-        <Button onClick={this.onLoadMore} attached="bottom">
-          Load more
-        </Button>
+        {length !== 0 && (
+          <Button onClick={this.onLoadMore} attached="bottom">
+            Load more
+          </Button>
+        )}
       </div>
     );
   }

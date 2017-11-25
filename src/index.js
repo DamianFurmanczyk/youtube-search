@@ -4,7 +4,7 @@ import "./index.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
 import SearchBar from "./components/SearchBar";
@@ -17,7 +17,11 @@ import thunk from "redux-thunk";
 
 import rootReducer from "./reducers";
 
+import { observeAuthChanges } from "./actions/auth";
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
+
+store.dispatch(observeAuthChanges());
 
 ReactDOM.render(
   <Provider store={store}>
@@ -27,7 +31,9 @@ ReactDOM.render(
         <Container>
           <Switch>
             <Route path="/" exact component={Videos} />
+            <Route path="/search/:query" exact component={Videos} />
             <Route path="/show/:id" component={VideoEmbed} />
+            <Redirect to="/" />
           </Switch>
         </Container>
       </main>
