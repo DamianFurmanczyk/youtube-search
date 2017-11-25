@@ -13,8 +13,8 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import { selectVideo } from "../actions/videos";
 
-import VideoItem from "./dumbies/VideoItem";
-import VideoEmbed from "./dumbies/VideoEmbed";
+import VideoItem from "./dumb/VideoItem";
+import VideoEmbed from "./dumb/VideoEmbed";
 
 class VideosView extends Component {
   constructor(props) {
