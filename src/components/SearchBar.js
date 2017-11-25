@@ -36,7 +36,7 @@ export default class SearchBar extends Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item position="right">
-            <SearchForm />
+            <SearchForm history={this.props.history} />
           </Menu.Item>
         </Menu>
       </Segment>

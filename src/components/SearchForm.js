@@ -3,7 +3,8 @@ import { Input, Form, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import _ from "lodash";
 
-import { fetchMovie, selectVideo } from "../actions/videos";
+import { fetchMovies } from "../actions/videos";
+import { setQuery } from "../actions/query";
 
 class SearchForm extends Component {
   constructor(props) {
@@ -18,9 +19,12 @@ class SearchForm extends Component {
   }
 
   onSearch(e) {
+    console.log(this.props);
+    console.log(this.state.query);
     e.preventDefault();
-    this.props.fetchMovie(this.state.query);
-    this.props.selectVideo(null);
+    this.props.fetchMovies(this.state.query);
+    this.props.setQuery(this.state.query);
+    this.props.history.push(`/`);
   }
 
   render() {
@@ -41,5 +45,5 @@ export default connect(
   videos => {
     return { videos };
   },
-  { fetchMovie, selectVideo }
+  { fetchMovies, setQuery }
 )(SearchForm);

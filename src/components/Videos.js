@@ -1,50 +1,47 @@
 import React, { Component } from "react";
-import {
-  Input,
-  Form,
-  Button,
-  Embed,
-  Grid,
-  Container,
-  Item
-} from "semantic-ui-react";
+import { Input, Form, Button, Segment, Item } from "semantic-ui-react";
 import _ from "lodash";
 
 import { connect } from "react-redux";
-import { selectVideo } from "../actions/videos";
+import { fetchMovies } from "../actions/videos";
 
-import VideoItem from "./dumb/VideoItem";
-import VideoEmbed from "./dumb/VideoEmbed";
+import VideoItem from "./VideoItem";
 
 class VideosView extends Component {
   constructor(props) {
     super(props);
 
-    this.showVideos = this.showVideos.bind(this);
+    this.onLoadMore = this.onLoadMore.bind(this);
   }
 
-  showVideos() {
-    return _.map(this.props.videos, (vid, key) => (
-      <VideoItem key={key} selectVideo={this.props.selectVideo} vid={vid} />
-    ));
+  onLoadMore() {
+    const { fetchMovies, query, videos } = this.props;
+    const length = Object.keys(videos).length;
+    fetchMovies(query, length + 5);
   }
 
   render() {
+    console.log(this.props.videos);
     return (
-      <Container>
-        {this.props.selectedVideo ? (
-          <VideoEmbed selectedVideo={this.props.selectedVideo} />
-        ) : (
-          <Item.Group divided>{this.showVideos()}</Item.Group>
-        )}
-      </Container>
+      <div>
+        <Segment attached>
+          <Item.Group divided>
+            {_.map(this.props.videos, (vid, key) => (
+              <VideoItem key={key} history={this.props.history} vid={vid} />
+            ))}
+          </Item.Group>
+        </Segment>
+        <Button onClick={this.onLoadMore} attached="bottom">
+          Load more
+        </Button>
+      </div>
     );
   }
 }
 
 export default connect(
-  ({ videos, selectedVideo }) => {
-    return { videos, selectedVideo };
+  ({ videos, query }) => {
+    return { videos, query };
   },
-  { selectVideo }
+  { fetchMovies }
 )(VideosView);

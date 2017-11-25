@@ -4,30 +4,33 @@ import "./index.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Main from "./components/_Main";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Container } from "semantic-ui-react";
+
+import SearchBar from "./components/SearchBar";
+import VideoEmbed from "./components/VideoEmbed";
+import Videos from "./components/Videos";
+
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import rootReducer from "./reducers";
-
-import SearchBar from "./components/SearchBar";
-import VideoEmbed from "./components/dumb/VideoEmbed";
-import Videos from "./components/Videos";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <div>
-        <SearchBar />
-        <Switch>
-          <Route path="/" exact component={Videos} />
-          <Route path="/video/:id" component={VideoEmbed} />
-        </Switch>
-      </div>
+      <main id="ultramain">
+        <Route path="/" component={SearchBar} />
+        <Container>
+          <Switch>
+            <Route path="/" exact component={Videos} />
+            <Route path="/show/:id" component={VideoEmbed} />
+          </Switch>
+        </Container>
+      </main>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")
