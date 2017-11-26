@@ -18,10 +18,14 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 
 import { observeAuthChanges } from "./actions/auth";
+import { observeUsersChanges } from "./actions/users";
+import { observePlaylistsChanges } from "./actions/playlists";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 store.dispatch(observeAuthChanges());
+store.dispatch(observeUsersChanges());
+store.dispatch(observePlaylistsChanges());
 
 ReactDOM.render(
   <Provider store={store}>

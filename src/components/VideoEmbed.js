@@ -1,7 +1,9 @@
 import React from "react";
-import { Embed, Segment, Rail } from "semantic-ui-react";
+import { Embed, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchMovies } from "../actions/videos";
+
+import PlaylistDropdown from "./PlaylistsDropdown";
 
 class EmbedView extends React.Component {
   constructor(props) {
@@ -29,6 +31,9 @@ class EmbedView extends React.Component {
           }}
           source="youtube"
         />
+
+        <PlaylistDropdown />
+        <div className="clearfix" />
         <Segment.Group raised>
           <Segment>{selected.title}</Segment>
           <Segment size="tiny">{selected.channelTitle}</Segment>

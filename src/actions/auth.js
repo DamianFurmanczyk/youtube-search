@@ -1,4 +1,6 @@
 import { db, auth, googleAuthProvider } from "../firebase";
+import _ from "lodash";
+const usersRef = db.ref("/users");
 
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
@@ -16,8 +18,11 @@ export const signOut = () => dispatch => {
 
 export const observeAuthChanges = () => dispatch => {
   auth.onAuthStateChanged(user => {
-    console.log("change");
-    if (user) return dispatch({ type: SIGN_IN, payload: user });
+    if (user) {
+      const userInfo = _.pick(user, ["email", "uid", "displayName"]);
+      usersRef.child(user.uid).set(userInfo);
+      return dispatch({ type: SIGN_IN, payload: userInfo });
+    }
     if (!user) return dispatch({ type: SIGN_OUT });
   });
 };

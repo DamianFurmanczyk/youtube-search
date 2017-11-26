@@ -5,3 +5,32 @@
 #ultramain {
   padding-bottom: 50px !important;
 }
+
+.ui.labeled.icon.button,
+.ui.labeled.icon.buttons .button {
+  z-index: 1000 !important;
+}
+
+[class*="left floated"] {
+  float: left;
+  margin-left: 0.25em;
+}
+
+[class*="right floated"] {
+  float: right;
+  margin-right: 0.25em;
+}
+.clearfix {
+  display: table;
+  clear: both;
+}
+
+.playlist-tile {
+  display: flex !important;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.playlist-tile i {
+  color: lightcoral;
+}

@@ -15,13 +15,9 @@ class SearchBar extends Component {
 
     this.handleItemClick = (e, { name }) => {
       this.setState({ activeItem: name });
-      if (name === "Sign-in with google") {
-        this.props.signIn();
-      }
-      if (name === "Sign out") {
-        this.props.signOut();
-      }
-      this.props.history.push(`/${name}`);
+      name === "Sign-in with google" && this.props.signIn();
+      name === "Sign out" && this.props.signOut();
+      name === "Account" && this.props.history.push(`/${name}`);
     };
   }
 
