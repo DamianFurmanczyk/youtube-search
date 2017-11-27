@@ -28,6 +28,17 @@ class VideosView extends Component {
     fetchMovies(query, length + 5);
   }
 
+  componentDidMount() {
+    this.props.fetchMovies("");
+  }
+
+  componentWillReceiveProps = (nextProps, nextState) => {
+    const prevQuery = this.props.match.params.query;
+    const newQuery = nextProps.match.params.query;
+
+    prevQuery !== newQuery && this.props.fetchMovies(newQuery);
+  };
+
   render() {
     const { history, videos } = this.props;
     const length = Object.keys(videos).length;
@@ -42,7 +53,7 @@ class VideosView extends Component {
               ))
             ) : (
               <Loader active inline="centered">
-                Waiting for input
+                Loading videos...
               </Loader>
             )}
           </Item.Group>

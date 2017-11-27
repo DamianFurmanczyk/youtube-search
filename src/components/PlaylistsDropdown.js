@@ -36,24 +36,20 @@ const PlaylistDropdown = ({ playlists, pushPlaylist, auth }) => {
     return false;
   }
   return (
-    <Dropdown
-      text="Add to playlist..."
-      floating
-      button
-      attached="bottom"
-      className="right floated"
-    >
-      <Dropdown.Menu>
-        <Dropdown.Item
-          onClick={() => {
-            pushPlaylist(auth.uid, prompt("Name the playlist"));
-          }}
-        >
-          Create new...
-        </Dropdown.Item>
-        {PlayilistItems && PlayilistItems}
-      </Dropdown.Menu>
-    </Dropdown>
+    <Button attached="top">
+      <Dropdown text="Add to playlist..." floating button attached="top">
+        <Dropdown.Menu>
+          <Dropdown.Item
+            onClick={() => {
+              pushPlaylist(auth.uid, prompt("Name the playlist"));
+            }}
+          >
+            Create new...
+          </Dropdown.Item>
+          {PlayilistItems && PlayilistItems}
+        </Dropdown.Menu>
+      </Dropdown>
+    </Button>
   );
 };
 

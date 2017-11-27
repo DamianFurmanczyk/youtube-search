@@ -23,17 +23,17 @@ class EmbedView extends React.Component {
 
     return (
       <div>
-        <Embed
-          id="O6Xo21L0ybE"
-          iframe={{
-            allowFullScreen: true,
-            src: `https://www.youtube.com/embed/${selected.id}`
-          }}
-          source="youtube"
-        />
-
         <PlaylistDropdown />
-        <div className="clearfix" />
+        <Segment attached>
+          <Embed
+            id="O6Xo21L0ybE"
+            iframe={{
+              allowFullScreen: true,
+              src: `https://www.youtube.com/embed/${selected.id}`
+            }}
+            source="youtube"
+          />
+        </Segment>
         <Segment.Group raised>
           <Segment>{selected.title}</Segment>
           <Segment size="tiny">{selected.channelTitle}</Segment>

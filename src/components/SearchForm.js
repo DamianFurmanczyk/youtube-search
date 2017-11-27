@@ -22,7 +22,7 @@ class SearchForm extends Component {
     e.preventDefault();
     this.props.fetchMovies(this.state.query);
     this.props.setQuery(this.state.query);
-    this.props.history.push(`/`);
+    this.props.history.push(`/search/${this.state.query}`);
   }
 
   render() {
