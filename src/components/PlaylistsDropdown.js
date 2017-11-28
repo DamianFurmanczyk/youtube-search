@@ -1,37 +1,14 @@
 import React from "react";
 import { Button, Dropdown, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { pushPlaylist, insertIntoPlaylist } from "../actions/playlists";
+import {
+  pushPlaylist,
+  insertIntoPlaylist,
+  removePlaylist
+} from "../actions/playlists";
 import _ from "lodash";
 
-class DropdownItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hover: false
-    };
-  }
-
-  render() {
-    const { pl, auth, insertIntoPlaylist, currentVideoId } = this.props;
-    return (
-      <Dropdown.Item
-        onClick={() => {
-          insertIntoPlaylist(auth.uid, pl, currentVideoId);
-        }}
-        onMouseEnter={() => this.setState({ hover: true })}
-        onMouseLeave={() => this.setState({ hover: false })}
-        className="playlist-tile"
-      >
-        <span>{this.props.pl}</span>
-        {this.state.hover && (
-          <Icon onClick={() => alert("unremovable yet")} name="remove circle" />
-        )}
-      </Dropdown.Item>
-    );
-  }
-}
+import DropdownItem from "./DropdownItem";
 
 const PlaylistDropdown = props => {
   let PlayilistItems = null;
@@ -39,7 +16,7 @@ const PlaylistDropdown = props => {
   const { playlists, pushPlaylist, auth, currentVideoId } = props;
 
   if (auth) {
-    if (playlists[auth.uid]) {
+    if (playlists && playlists[auth.uid]) {
       PlayilistItems = _.map(playlists[auth.uid], (pl, key) => {
         // pl=playlist name
         return (
@@ -79,5 +56,5 @@ export default connect(
   ({ playlists, auth }, ownProps) => {
     return { playlists, auth };
   },
-  { pushPlaylist, insertIntoPlaylist }
+  { pushPlaylist, insertIntoPlaylist, removePlaylist }
 )(PlaylistDropdown);

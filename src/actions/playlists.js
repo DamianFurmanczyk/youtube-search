@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-const playlistsRef = db.ref("/playlists");
+export const playlistsRef = db.ref("/playlists");
 
 export const updatePlaylists = PLAYLISTS => {
   console.log(PLAYLISTS);
@@ -17,12 +17,26 @@ export const pushPlaylist = (userUid, playlistName) => {
 };
 
 export const insertIntoPlaylist = (userUid, playlistName, videoUid) => {
-  console.log("userUid", userUid);
-  console.log("playlistName", playlistName);
-  console.log("playlistName", playlistName);
-  console.log("videoUid", videoUid);
   return dispatch => {
     playlistsRef.child(userUid + "-" + playlistName).push(videoUid);
+  };
+};
+
+export const removePlaylist = (
+  userUid,
+  playlistName,
+  videoUid,
+  playlistUid
+) => {
+  return dispatch => {
+    playlistsRef
+      .child(userUid)
+      .child(playlistUid)
+      .remove();
+    playlistsRef
+      .child(userUid + "-" + playlistName)
+      .child(videoUid)
+      .set(null);
   };
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Embed, Segment } from "semantic-ui-react";
+import { Embed, Segment, Loader } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchMovies } from "../actions/videos";
 
@@ -18,7 +18,7 @@ class EmbedView extends React.Component {
     }
 
     if (!selected) {
-      return <div>Not Found</div>;
+      return <Loader active inline="centered" />;
     }
 
     return (
