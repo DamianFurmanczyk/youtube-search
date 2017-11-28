@@ -28,10 +28,6 @@ class VideosView extends Component {
     fetchMovies(query, length + 5);
   }
 
-  componentDidMount() {
-    this.props.fetchMovies("");
-  }
-
   componentWillReceiveProps = (nextProps, nextState) => {
     const prevQuery = this.props.match.params.query;
     const newQuery = nextProps.match.params.query;

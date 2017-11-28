@@ -20,12 +20,14 @@ import rootReducer from "./reducers";
 import { observeAuthChanges } from "./actions/auth";
 import { observeUsersChanges } from "./actions/users";
 import { observePlaylistsChanges } from "./actions/playlists";
+import { fetchMovies } from "./actions/videos";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 store.dispatch(observeAuthChanges());
 store.dispatch(observeUsersChanges());
 store.dispatch(observePlaylistsChanges());
+store.dispatch(fetchMovies(""));
 
 ReactDOM.render(
   <Provider store={store}>

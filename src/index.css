@@ -29,10 +29,13 @@
   display: flex !important;
   justify-content: space-between;
   padding: 0 10px;
+  line-height: 21px !important;
+  font-size: 16px !important;
 }
 
 .playlist-tile i {
   color: lightcoral;
+  font-size: 21px !important;
 }
 
 input {

@@ -9,10 +9,20 @@ export const updatePlaylists = PLAYLISTS => {
   };
 };
 
-export const pushPlaylist = (userUid, PLAYLISTNAME) => {
+export const pushPlaylist = (userUid, playlistName) => {
   return dispatch => {
-    playlistsRef.child(userUid).push(PLAYLISTNAME);
+    playlistsRef.child(userUid).push(playlistName);
     // next steps: based on playlistname create playlistref.child(userUid).child(playlistname) and then u push the video ref
+  };
+};
+
+export const insertIntoPlaylist = (userUid, playlistName, videoUid) => {
+  console.log("userUid", userUid);
+  console.log("playlistName", playlistName);
+  console.log("playlistName", playlistName);
+  console.log("videoUid", videoUid);
+  return dispatch => {
+    playlistsRef.child(userUid + "-" + playlistName).push(videoUid);
   };
 };
 

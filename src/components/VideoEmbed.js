@@ -23,7 +23,7 @@ class EmbedView extends React.Component {
 
     return (
       <div>
-        <PlaylistDropdown />
+        <PlaylistDropdown currentVideoId={selected.id} />
         <Segment attached>
           <Embed
             id="O6Xo21L0ybE"
