@@ -48,3 +48,20 @@ input {
   height: 38px !important;
   transform: translateY(-1px);
 }
+
+html {
+  min-height: 100vh;
+}
+
+body,
+#ultramain,
+#root,
+.container {
+  height: 100% !important;
+}
+
+.flex-center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

@@ -41,9 +41,11 @@ class VideosView extends Component {
 
     if (videos === "loader") {
       return (
-        <Loader active inline="centered">
-          Loading videos...
-        </Loader>
+        <div className="flex-center">
+          <Loader active inline="centered">
+            Loading videos...
+          </Loader>
+        </div>
       );
     }
 
@@ -56,9 +58,7 @@ class VideosView extends Component {
                 <VideoItem key={key} history={history} vid={vid} />
               ))
             ) : (
-              <Loader active inline="centered">
-                Loading videos...
-              </Loader>
+              <p>Nothing found...</p>
             )}
           </Item.Group>
         </Segment>
