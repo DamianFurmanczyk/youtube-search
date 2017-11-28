@@ -39,6 +39,14 @@ class VideosView extends Component {
     const { history, videos } = this.props;
     const length = Object.keys(videos).length;
 
+    if (videos === "loader") {
+      return (
+        <Loader active inline="centered">
+          Loading videos...
+        </Loader>
+      );
+    }
+
     return (
       <div>
         <Segment attached>

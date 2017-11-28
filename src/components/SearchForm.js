@@ -3,7 +3,7 @@ import { Input, Form, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import _ from "lodash";
 
-import { fetchMovies } from "../actions/videos";
+import { fetchMovies, setLoader } from "../actions/videos";
 import { setQuery } from "../actions/query";
 
 class SearchForm extends Component {
@@ -20,6 +20,7 @@ class SearchForm extends Component {
 
   onSearch(e) {
     e.preventDefault();
+    this.props.setLoader();
     this.props.fetchMovies(this.state.query);
     this.props.setQuery(this.state.query);
     this.props.history.push(`/search/${this.state.query}`);
@@ -43,5 +44,5 @@ export default connect(
   videos => {
     return { videos };
   },
-  { fetchMovies, setQuery }
+  { fetchMovies, setQuery, setLoader }
 )(SearchForm);

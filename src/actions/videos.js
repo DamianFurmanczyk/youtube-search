@@ -18,3 +18,9 @@ export const fetchMovies = (query, maxResults = 10) => dispatch => {
     dispatch({ type: FETCH_VID, payload: results });
   });
 };
+
+export function setLoader() {
+  return {
+    type: "SET_LOADER"
+  };
+}
