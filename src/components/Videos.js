@@ -1,19 +1,12 @@
 import React, { Component } from "react";
-import {
-  Input,
-  Form,
-  Button,
-  Segment,
-  Item,
-  Dimmer,
-  Loader
-} from "semantic-ui-react";
+import { Input, Form, Button, Segment, Item } from "semantic-ui-react";
 import _ from "lodash";
 
 import { connect } from "react-redux";
 import { fetchMovies } from "../actions/videos";
 
 import VideoItem from "./VideoItem";
+import Loader from "./Loader.fn";
 
 class VideosView extends Component {
   constructor(props) {
@@ -40,13 +33,7 @@ class VideosView extends Component {
     const length = Object.keys(videos).length;
 
     if (videos === "loader") {
-      return (
-        <div className="flex-center">
-          <Loader active inline="centered">
-            Loading videos...
-          </Loader>
-        </div>
-      );
+      return <Loader />;
     }
 
     return (

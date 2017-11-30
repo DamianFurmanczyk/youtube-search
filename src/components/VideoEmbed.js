@@ -1,9 +1,10 @@
 import React from "react";
-import { Embed, Segment, Loader } from "semantic-ui-react";
+import { Embed, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchMovies } from "../actions/videos";
 
 import PlaylistDropdown from "./PlaylistsDropdown";
+import Loader from "./Loader.fn";
 
 class EmbedView extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class EmbedView extends React.Component {
     }
 
     if (!selected) {
-      return <Loader active inline="centered" />;
+      return <Loader />;
     }
 
     return (

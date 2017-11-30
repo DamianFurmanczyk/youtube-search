@@ -15,6 +15,13 @@ const PlaylistDropdown = props => {
 
   const { playlists, pushPlaylist, auth, currentVideoId } = props;
 
+  if (!auth)
+    return (
+      <Button attached="top" disabled>
+        Sign in to manage playlists...
+      </Button>
+    );
+
   if (auth) {
     if (playlists && playlists[auth.uid]) {
       PlayilistItems = _.map(playlists[auth.uid], (pl, key) => {

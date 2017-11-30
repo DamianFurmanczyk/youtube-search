@@ -9,7 +9,7 @@ class SearchBar extends Component {
     super(props);
 
     this.state = {
-      activeItem: "Sign-in with google",
+      activeItem: "Browse",
       query: ""
     };
 
@@ -17,7 +17,8 @@ class SearchBar extends Component {
       this.setState({ activeItem: name });
       name === "Sign-in with google" && this.props.signIn();
       name === "Sign out" && this.props.signOut();
-      name === "Account" && this.props.history.push(`/${name}`);
+      name === "Playlists" && this.props.history.push("/playlists");
+      name === "Browse" && this.props.history.push("/");
     };
   }
 
@@ -28,6 +29,12 @@ class SearchBar extends Component {
     return (
       <Segment inverted>
         <Menu inverted pointing secondary>
+          <Menu.Item
+            name="Browse"
+            active={activeItem === "Browse"}
+            onClick={this.handleItemClick}
+          />
+
           {!auth && (
             <Menu.Item
               name="Sign-in with google"
@@ -45,8 +52,8 @@ class SearchBar extends Component {
           )}
           {auth && (
             <Menu.Item
-              name="Account"
-              active={activeItem === "Account"}
+              name="Playlists"
+              active={activeItem === "Playlists"}
               onClick={this.handleItemClick}
             />
           )}

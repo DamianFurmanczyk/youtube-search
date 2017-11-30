@@ -10,6 +10,7 @@ import { Container } from "semantic-ui-react";
 import SearchBar from "./components/SearchBar";
 import VideoEmbed from "./components/VideoEmbed";
 import Videos from "./components/Videos";
+import AuthPlaylists from "./components/AuthPlaylists";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -40,6 +41,7 @@ ReactDOM.render(
             <Route path="/" exact component={Videos} />
             <Route path="/search/:query" exact component={Videos} />
             <Route path="/show/:id" component={VideoEmbed} />
+            <Route path="/playlists" component={AuthPlaylists} />
             <Redirect to="/" />
           </Switch>
         </Container>

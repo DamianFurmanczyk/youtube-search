@@ -57,7 +57,7 @@ body,
 #ultramain,
 #root,
 .container {
-  height: 100% !important;
+  min-height: 100% !important;
 }
 
 .flex-center {
