@@ -11,6 +11,7 @@ import SearchBar from "./components/SearchBar";
 import VideoEmbed from "./components/VideoEmbed";
 import Videos from "./components/Videos";
 import AuthPlaylists from "./components/AuthPlaylists";
+import ShowPlaylist from "./components/ShowPlaylist.fn";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -41,6 +42,7 @@ ReactDOM.render(
             <Route path="/" exact component={Videos} />
             <Route path="/search/:query" exact component={Videos} />
             <Route path="/show/:id" component={VideoEmbed} />
+            <Route path="/playlists/:name" component={ShowPlaylist} />
             <Route path="/playlists" component={AuthPlaylists} />
             <Redirect to="/" />
           </Switch>

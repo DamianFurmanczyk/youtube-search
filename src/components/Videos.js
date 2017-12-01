@@ -4,6 +4,7 @@ import _ from "lodash";
 
 import { connect } from "react-redux";
 import { fetchMovies } from "../actions/videos";
+import { setQuery } from "../actions/query";
 
 import VideoItem from "./VideoItem";
 import Loader from "./Loader.fn";
@@ -17,8 +18,13 @@ class VideosView extends Component {
 
   onLoadMore() {
     const { fetchMovies, query, videos } = this.props;
+    console.log(query);
     const length = Object.keys(videos).length;
     fetchMovies(query, length + 5);
+  }
+
+  componentDidMount() {
+    this.props.fetchMovies(this.props.match.params.query);
   }
 
   componentWillReceiveProps = (nextProps, nextState) => {
@@ -26,6 +32,7 @@ class VideosView extends Component {
     const newQuery = nextProps.match.params.query;
 
     prevQuery !== newQuery && this.props.fetchMovies(newQuery);
+    prevQuery !== newQuery && this.props.setQuery(newQuery || "");
   };
 
   render() {
@@ -37,7 +44,7 @@ class VideosView extends Component {
     }
 
     return (
-      <div>
+      <div className="video-list">
         <Segment attached>
           <Item.Group divided>
             {length !== 0 ? (
@@ -49,11 +56,13 @@ class VideosView extends Component {
             )}
           </Item.Group>
         </Segment>
-        {length !== 0 && (
-          <Button onClick={this.onLoadMore} attached="bottom">
-            Load more
-          </Button>
-        )}
+        {length !== 0 &&
+          length < 50 &&
+          length % 5 === 0 && (
+            <Button onClick={this.onLoadMore} attached="bottom">
+              Load more
+            </Button>
+          )}
       </div>
     );
   }
@@ -63,5 +72,5 @@ export default connect(
   ({ videos, query }) => {
     return { videos, query };
   },
-  { fetchMovies }
+  { fetchMovies, setQuery }
 )(VideosView);
