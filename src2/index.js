@@ -11,7 +11,7 @@ import SearchBar from "./components/SearchBar";
 import VideoEmbed from "./components/VideoEmbed";
 import Videos from "./components/Videos";
 import AuthPlaylists from "./components/AuthPlaylists";
-import ShowPlaylist from "./components/ShowPlaylist";
+import ShowPlaylist from "./components/ShowPlaylist.fn";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";

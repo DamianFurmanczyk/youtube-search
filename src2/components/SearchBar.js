@@ -3,7 +3,6 @@ import { Menu, Segment } from "semantic-ui-react";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
 import { signIn, signOut } from "../actions/auth";
-import {NavLink} from 'react-router-dom';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -18,6 +17,8 @@ class SearchBar extends Component {
       this.setState({ activeItem: name });
       name === "Sign-in with google" && this.props.signIn();
       name === "Sign out" && this.props.signOut();
+      name === "Playlists" && this.props.history.push("/playlists");
+      name === "Browse" && this.props.history.push("/");
     };
   }
 
@@ -28,7 +29,11 @@ class SearchBar extends Component {
     return (
       <Segment inverted>
         <Menu inverted pointing secondary>
-        <Menu.Item exact as={NavLink} to='/'>Home</Menu.Item>
+          <Menu.Item
+            name="Browse"
+            active={activeItem === "Browse"}
+            onClick={this.handleItemClick}
+          />
 
           {!auth && (
             <Menu.Item
@@ -46,7 +51,11 @@ class SearchBar extends Component {
             />
           )}
           {auth && (
-            <Menu.Item as={NavLink} to='/playlists'>Your Playlists</Menu.Item>
+            <Menu.Item
+              name="Playlists"
+              active={activeItem === "Playlists"}
+              onClick={this.handleItemClick}
+            />
           )}
           <Menu.Item position="right">
             <SearchForm history={this.props.history} />

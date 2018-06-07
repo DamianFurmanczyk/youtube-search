@@ -3,7 +3,8 @@ import { Button, Dropdown, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import {
   pushPlaylist,
-  insertIntoPlaylist
+  insertIntoPlaylist,
+  removePlaylist
 } from "../actions/playlists";
 import _ from "lodash";
 
@@ -46,7 +47,7 @@ const PlaylistDropdown = props => {
         <Dropdown.Menu>
           <Dropdown.Item
             onClick={() => {
-              pushPlaylist(auth.uid, prompt("Name the playlist", ''));
+              pushPlaylist(auth.uid, prompt("Name the playlist"));
             }}
           >
             Create new...
@@ -62,5 +63,5 @@ export default connect(
   ({ playlists, auth }, ownProps) => {
     return { playlists, auth };
   },
-  { pushPlaylist, insertIntoPlaylist }
+  { pushPlaylist, insertIntoPlaylist, removePlaylist }
 )(PlaylistDropdown);

@@ -31,13 +31,14 @@ class VideosView extends Component {
     const prevQuery = this.props.match.params.query;
     const newQuery = nextProps.match.params.query;
 
-    prevQuery !== newQuery && this.props.fetchMovies(newQuery || "");
+    prevQuery !== newQuery && this.props.fetchMovies(newQuery);
     prevQuery !== newQuery && this.props.setQuery(newQuery || "");
   };
 
   render() {
     const { history, videos } = this.props;
-    const length = videos === 'loader' ? 0 : Object.keys(videos).length;
+    const length = Object.keys(videos).length;
+
     if (videos === "loader") {
       return <Loader />;
     }
