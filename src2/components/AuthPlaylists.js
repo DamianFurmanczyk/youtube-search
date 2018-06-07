@@ -19,10 +19,10 @@ class AuthPlaylists extends Component {
     if (!auth) return <Loader />;
     const userPlaylists = playlists[auth.uid];
 
-    console.log(auth);
-    console.log("auth");
-    console.log(playlists);
-    console.log(userPlaylists);
+    //console.log(auth);
+    //console.log("auth");
+    //console.log(playlists);
+    //console.log(userPlaylists);
 
     return (
       <div>

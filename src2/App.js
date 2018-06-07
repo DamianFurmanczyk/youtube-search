@@ -33,7 +33,7 @@ class App extends Component {
               onChange={e => this.setState({ query: e.target.value })}
             />
             <button type="submit">Search</button>
-            {console.log(vids)}
+            {//console.log(vids)}
           </form>
         </center>
       </div>

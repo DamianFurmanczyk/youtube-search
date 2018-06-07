@@ -18,7 +18,7 @@ class VideosView extends Component {
 
   onLoadMore() {
     const { fetchMovies, query, videos } = this.props;
-    console.log(query);
+    //console.log(query);
     const length = Object.keys(videos).length;
     fetchMovies(query, length + 5);
   }

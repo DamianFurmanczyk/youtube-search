@@ -2,6 +2,7 @@
   "name": "master",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "axios": "^0.17.1",
     "firebase": "^4.6.2",
@@ -22,7 +23,9 @@
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start": "react-scripts start",
+    "def-start": "react-scripts start",
+    "start": "serve --single ./build",
+    "postinstall": "react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

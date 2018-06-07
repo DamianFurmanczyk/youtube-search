@@ -9,8 +9,8 @@ import VideoItem from "./VideoItem";
 const ShowPlaylist = ({ playlists, auth, match, history }) => {
   if (!auth) return <Loader />;
 
-  console.log("playlists");
-  console.log(playlists[`${auth.uid}-${match.params.name}`]);
+  //console.log("playlists");
+  //console.log(playlists[`${auth.uid}-${match.params.name}`]);
 
   const currentPlaylist = playlists[`${auth.uid}-${match.params.name}`];
   if (!currentPlaylist === null) return <Loader />;

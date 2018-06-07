@@ -2,7 +2,7 @@ import { db } from "../firebase";
 export const playlistsRef = db.ref("/playlists");
 
 export const updatePlaylists = PLAYLISTS => {
-  console.log(PLAYLISTS);
+  //console.log(PLAYLISTS);
   return {
     type: "UPDATE_PLAYLIST",
     payload: PLAYLISTS
@@ -41,11 +41,11 @@ export const removePlaylist = (
 };
 
 export const observePlaylistsChanges = () => {
-  console.log("observing playlists");
+  //console.log("observing playlists");
   return dispatch => {
     playlistsRef.on("value", data => {
-      console.log("playlist has been added to db");
-      console.log(data.val());
+      //console.log("playlist has been added to db");
+      //console.log(data.val());
       dispatch(updatePlaylists(data.val()));
     });
   };
