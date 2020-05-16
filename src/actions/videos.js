@@ -2,7 +2,7 @@ import axios from "axios";
 
 import search from "youtube-search";
 
-let API_KEY = "AIzaSyDHFzAEOzHn_62UGfc2-z0Gh9D9k5rUkaE";
+let API_KEY = "AIzaSyBuqr8Iehmgl9BpbCes_HXSzgNqXJSUF0I";
 var opts = {
   key: API_KEY
 };

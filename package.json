@@ -20,11 +20,15 @@
     "semantic-ui-react": "^0.76.0",
     "youtube-search": "^1.0.10"
   },
+  "engines": {
+    "node": "12.16.3",
+    "npm": "6.14.4"
+  },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "def-start": "react-scripts start",
-    "start": "serve --single ./build",
+    "start": "react-scripts start",
     "postinstall": "react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
